@@ -1,0 +1,40 @@
+{
+  "name": "@infandev/agent-kit",
+  "version": "1.0.2",
+  "description": "Infandev Agent Kit: Universal AI Ruleset Compiler",
+  "bin": {
+    "agent-kit": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    ".agent",
+    "bin",
+    "README.md"
+  ],
+  "keywords": [
+    "ai",
+    "agent",
+    "cursor",
+    "windsurf",
+    "antigravity",
+    "tnbn"
+  ],
+  "author": "daniel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infantex/agent-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/infantex/agent-kit/issues"
+  },
+  "homepage": "https://github.com/infantex/agent-kit#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
