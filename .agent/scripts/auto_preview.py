@@ -19,7 +19,8 @@ import argparse
 import subprocess
 from pathlib import Path
 
-AGENT_DIR = Path(".agent")
+# Detect agent directory name dynamically
+AGENT_DIR = Path(".agents") if Path(".agents").exists() else Path(".agents")
 PID_FILE = AGENT_DIR / "preview.pid"
 LOG_FILE = AGENT_DIR / "preview.log"
 

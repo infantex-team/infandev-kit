@@ -11,7 +11,7 @@ $ARGUMENTS
 ## 🔴 CRITICAL RULES
 
 1. **NO CODE WRITING** - This command creates plan file only
-2. **Use project-planner agent** - NOT native Plan mode
+2. **Use project-planner agent** - NOT AG Kit Agent's native Plan mode
 3. **Socratic Gate** - Ask clarifying questions before planning
 4. **Dynamic Naming** - Plan file named based on task
 
@@ -25,18 +25,18 @@ Use the `project-planner` agent with this context:
 CONTEXT:
 - User Request: $ARGUMENTS
 - Mode: PLANNING ONLY (no code)
-- Output: docs/PLAN-{task-slug}.md (dynamic naming)
+- Output: {task-slug}.md in project root (dynamic naming)
 
 NAMING RULES:
 1. Extract 2-3 key words from request
 2. Lowercase, hyphen-separated
 3. Max 30 characters
-4. Example: "e-commerce cart" → PLAN-ecommerce-cart.md
+4. Example: "e-commerce cart" → ecommerce-cart.md
 
 RULES:
 1. Follow project-planner.md Phase -1 (Context Check)
 2. Follow project-planner.md Phase 0 (Socratic Gate)
-3. Create PLAN-{slug}.md with task breakdown
+3. Create {slug}.md with task breakdown
 4. DO NOT write any code files
 5. REPORT the exact file name created
 ```
@@ -45,21 +45,20 @@ RULES:
 
 ## Expected Output
 
-| Deliverable            | Location                   |
-| ---------------------- | -------------------------- |
-| Project Plan           | `docs/PLAN-{task-slug}.md` |
-| Task Breakdown         | Inside plan file           |
-| Agent Assignments      | Inside plan file           |
-| Verification Checklist | Phase X in plan file       |
+| Deliverable | Location |
+|-------------|----------|
+| Project Plan | `{task-slug}.md` in project root |
+| Task Breakdown | Inside plan file |
+| Agent Assignments | Inside plan file |
+| Verification Checklist | Phase X in plan file |
 
 ---
 
 ## After Planning
 
 Tell user:
-
 ```
-[OK] Plan created: docs/PLAN-{slug}.md
+[OK] Plan created: {slug}.md in project root
 
 Next steps:
 - Review the plan
@@ -71,13 +70,13 @@ Next steps:
 
 ## Naming Examples
 
-| Request                           | Plan File                     |
-| --------------------------------- | ----------------------------- |
-| `/plan e-commerce site with cart` | `docs/PLAN-ecommerce-cart.md` |
-| `/plan mobile app for fitness`    | `docs/PLAN-fitness-app.md`    |
-| `/plan add dark mode feature`     | `docs/PLAN-dark-mode.md`      |
-| `/plan fix authentication bug`    | `docs/PLAN-auth-fix.md`       |
-| `/plan SaaS dashboard`            | `docs/PLAN-saas-dashboard.md` |
+| Request | Plan File |
+|---------|-----------|
+| `/plan e-commerce site with cart` | `ecommerce-cart.md` |
+| `/plan mobile app for fitness` | `fitness-app.md` |
+| `/plan add dark mode feature` | `dark-mode.md` |
+| `/plan fix authentication bug` | `auth-fix.md` |
+| `/plan SaaS dashboard` | `saas-dashboard.md` |
 
 ---
 

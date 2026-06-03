@@ -157,7 +157,7 @@ def run_script(name: str, script_path: Path, project_path: str, url: Optional[st
     start_time = datetime.now()
     
     # Build command
-    cmd = ["python", str(script_path), project_path]
+    cmd = [sys.executable, str(script_path), project_path]
     if url and ("lighthouse" in script_path.name.lower() or "playwright" in script_path.name.lower()):
         cmd.append(url)
     
@@ -289,7 +289,8 @@ Examples:
     print(f"Started: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
     start_time = datetime.now()
-    results = []
+    # Detect agent directory dynamically (default to .agents if exists, fallback to .agent)
+    agent_dir_name = ".agents" if (project_path / ".agents").exists() else ".agents"
     
     # Run all verification categories
     for suite in VERIFICATION_SUITE:
@@ -307,7 +308,8 @@ Examples:
         print_header(f"📋 {category.upper()}")
         
         for name, script_path, required in suite["checks"]:
-            script = project_path / script_path
+            actual_script_path = Path(script_path.replace(".agents", agent_dir_name))
+            script = project_path / actual_script_path
             result = run_script(name, script, str(project_path), args.url)
             result["category"] = category
             results.append(result)

@@ -1,7 +1,9 @@
 ---
 name: testing-patterns
 description: Testing patterns and principles. Unit, integration, mocking strategies.
+when_to_use: "When writing unit tests, integration tests, choosing testing frameworks, or implementing mocking strategies."
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
+effort: medium
 ---
 
 # Testing Patterns
@@ -41,7 +43,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 | Type | Best For | Speed |
 |------|----------|-------|
-| **Unit** | Pure functions, logic | Fast (<50ms) |
+| **Unit** | Pure functions, logic | Fast (<100ms) |
 | **Integration** | API, DB, services | Medium |
 | **E2E** | Critical user flows | Slow |
 

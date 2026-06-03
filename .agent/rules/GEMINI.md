@@ -31,14 +31,14 @@ Agent activated → Check frontmatter "skills:" → Read SKILL.md (INDEX) → Re
 
 **Before ANY action, classify the request:**
 
-| Request Type     | Trigger Keywords                           | Active Tiers                   | Result                      |
-| ---------------- | ------------------------------------------ | ------------------------------ | --------------------------- |
-| **QUESTION**     | "what is", "how does", "explain"           | TIER 0 only                    | Text Response               |
-| **SURVEY/INTEL** | "analyze", "list files", "overview"        | TIER 0 + Explorer              | Session Intel (No File)     |
-| **SIMPLE CODE**  | "fix", "add", "change" (single file)       | TIER 0 + TIER 1 (lite)         | Inline Edit                 |
-| **COMPLEX CODE** | "build", "create", "implement", "refactor" | TIER 0 + TIER 1 (full) + Agent | **{task-slug}.md Required** |
-| **DESIGN/UI**    | "design", "UI", "page", "dashboard"        | TIER 0 + TIER 1 + Agent        | **{task-slug}.md Required** |
-| **SLASH CMD**    | /create, /orchestrate, /debug              | Command-specific flow          | Variable                    |
+| Request Type     | Trigger Keywords                           | Active Tiers                   | Effort   | Result                      |
+| ---------------- | ------------------------------------------ | ------------------------------ | -------- | --------------------------- |
+| **QUESTION**     | "what is", "how does", "explain"           | TIER 0 only                    | low      | Text Response               |
+| **SURVEY/INTEL** | "analyze", "list files", "overview"        | TIER 0 + Explorer              | low      | Session Intel (No File)     |
+| **SIMPLE CODE**  | "fix", "add", "change" (single file)       | TIER 0 + TIER 1 (lite)         | medium   | Inline Edit                 |
+| **COMPLEX CODE** | "build", "create", "implement", "refactor" | TIER 0 + TIER 1 (full) + Agent | high     | **{task-slug}.md Required** |
+| **DESIGN/UI**    | "design", "UI", "page", "dashboard"        | TIER 0 + TIER 1 + Agent        | high     | **{task-slug}.md Required** |
+| **SLASH CMD**    | /create, /orchestrate, /debug              | Command-specific flow          | varies   | Variable                    |
 
 ---
 
@@ -109,7 +109,7 @@ When user's prompt is NOT in English:
 
 - **Code**: Concise, direct, no over-engineering. Self-documenting.
 - **Testing**: Mandatory. Pyramid (Unit > Int > E2E) + AAA Pattern.
-- **Performance**: Measure first. Adhere to 2025 standards (Core Web Vitals).
+- **Performance**: Measure first. Adhere to current Core Web Vitals standards.
 - **Infra/Safety**: 5-Phase Deployment. Verify secrets security.
 
 ### 📁 File Dependency Awareness
@@ -120,14 +120,19 @@ When user's prompt is NOT in English:
 2. Identify dependent files
 3. Update ALL affected files together
 
-### 🗺️ System Map Read
+### 🗺️ System Map & Memory Read
 
-> 🔴 **MANDATORY:** Read `ARCHITECTURE.md` at session start to understand Agents, Skills, and Scripts.
+> 🔴 **MANDATORY:** At session start, you MUST read:
+>
+> 1. `.agent/ARCHITECTURE.md` to understand Agents, Skills, and Scripts.
+> 2. `.agent/memory/MEMORY.md` to load persistent project conventions, user preferences, and decisions.
+> 3. `.agent/.shared/project-intent.md` to load project values and trade-off priorities.
 
-**Path Awareness:**
+**Path Awareness (Note: the project directory name is `.agents` plural):**
 
-- Agents: `.agent/` (Project)
+- Agents: `.agent/agents/` (Project)
 - Skills: `.agent/skills/` (Project)
+- Memory: `.agent/memory/` (Project)
 - Runtime Scripts: `.agent/skills/<skill>/scripts/`
 
 ### 🧠 Read → Understand → Apply
@@ -142,17 +147,6 @@ When user's prompt is NOT in English:
 1. What is the GOAL of this agent/skill?
 2. What PRINCIPLES must I apply?
 3. How does this DIFFER from generic output?
-
-### 🧠 Think Node-by-Node (TNbN)
-
-> 🔴 **MANDATORY:** Apply the TNbN logic gate before any codebase modification to eliminate hallucinations.
-
-1. **State**: Declare target and assumptions (e.g., "I assume `config.js` exists and has X").
-2. **Verify**: Use `Read`, `Grep`, or `ListDir` to confirm filesystem state.
-3. **Act**: Perform the modification (e.g., `Edit`, `Write`).
-4. **Confirm**: Verify the change with a final tool call (`Read` or `status`).
-
-_Protocol managed by `@[skills/agent-ops]`._
 
 ---
 
@@ -193,7 +187,7 @@ _Protocol managed by `@[skills/agent-ops]`._
 
 ### 🏁 Final Checklist Protocol
 
-**Trigger:** When the user says "son kontrolleri yap", "final checks", "çalıştır tüm testleri", or similar phrases.
+**Trigger:** When the user says "run the final checks", "final checks", "run all the tests", or similar phrases.
 
 | Task Stage       | Command                                            | Purpose                        |
 | ---------------- | -------------------------------------------------- | ------------------------------ |
@@ -209,19 +203,17 @@ _Protocol managed by `@[skills/agent-ops]`._
 - **Completion:** A task is NOT finished until `checklist.py` returns success.
 - **Reporting:** If it fails, fix the **Critical** blockers first (Security/Lint).
 
-**Available Scripts (12 total):**
+**Available Scripts (10 total):**
 
 | Script                     | Skill                 | When to Use         |
 | -------------------------- | --------------------- | ------------------- |
 | `security_scan.py`         | vulnerability-scanner | Always on deploy    |
-| `dependency_analyzer.py`   | vulnerability-scanner | Weekly / Deploy     |
 | `lint_runner.py`           | lint-and-validate     | Every code change   |
 | `test_runner.py`           | testing-patterns      | After logic change  |
 | `schema_validator.py`      | database-design       | After DB change     |
 | `ux_audit.py`              | frontend-design       | After UI change     |
 | `accessibility_checker.py` | frontend-design       | After UI change     |
 | `seo_checker.py`           | seo-fundamentals      | After page change   |
-| `bundle_analyzer.py`       | performance-profiling | Before deploy       |
 | `mobile_audit.py`          | mobile-design         | After mobile change |
 | `lighthouse_audit.py`      | performance-profiling | Before deploy       |
 | `playwright_runner.py`     | webapp-testing        | Before deploy       |
@@ -251,10 +243,10 @@ _Protocol managed by `@[skills/agent-ops]`._
 
 > **Design rules are in the specialist agents, NOT here.**
 
-| Task         | Read                            |
-| ------------ | ------------------------------- |
-| Web UI/UX    | `.agent/frontend-specialist.md` |
-| Mobile UI/UX | `.agent/mobile-developer.md`    |
+| Task         | Read                                   |
+| ------------ | -------------------------------------- |
+| Web UI/UX    | `.agent/agents/frontend-specialist.md` |
+| Mobile UI/UX | `.agent/agents/mobile-developer.md`    |
 
 **These agents contain:**
 
@@ -277,7 +269,7 @@ _Protocol managed by `@[skills/agent-ops]`._
 ### Key Scripts
 
 - **Verify**: `.agent/scripts/verify_all.py`, `.agent/scripts/checklist.py`
-- **Scanners**: `security_scan.py`, `dependency_analyzer.py`
+- **Scanners**: `security_scan.py`
 - **Audits**: `ux_audit.py`, `mobile_audit.py`, `lighthouse_audit.py`, `seo_checker.py`
 - **Test**: `playwright_runner.py`, `test_runner.py`
 

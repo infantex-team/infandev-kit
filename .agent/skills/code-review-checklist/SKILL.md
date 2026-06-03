@@ -1,7 +1,9 @@
 ---
 name: code-review-checklist
 description: Code review guidelines covering code quality, security, and best practices.
+when_to_use: "When reviewing code for quality, security, and best practices. When the user says 'review my code' or 'check this PR'."
 allowed-tools: Read, Glob, Grep
+effort: medium
 ---
 
 # Code Review Checklist
@@ -44,7 +46,7 @@ allowed-tools: Read, Glob, Grep
 - [ ] Public APIs documented
 - [ ] README updated if needed
 
-## AI & LLM Review Patterns (2025)
+## AI & LLM Review Patterns
 
 ### Logic & Hallucinations
 - [ ] **Chain of Thought:** Does the logic follow a verifiable path?

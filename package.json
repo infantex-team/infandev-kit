@@ -1,6 +1,6 @@
 {
   "name": "@infandev/agent-kit",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Infandev Agent Kit: Universal AI Ruleset Compiler",
   "bin": {
     "agent-kit": "./bin/cli.js"
