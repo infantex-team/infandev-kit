@@ -20,15 +20,21 @@ Compiles the `AGENTS.md` unified persona matrix and initializes `.windsurfrules`
 npx @infandev/agent-kit init --windsurf
 ```
 
-### For Raw CLI / Custom Setups
+### For VS Code Developers (Copilot / Cline / RooCode)
 
-If you use CLI agents like Aider, RooCode, or purely Claude Code, extract the raw uncompiled intelligence matrix directly into an `.antigravity/` folder:
+Generates a unified `.github/copilot-instructions.md` configuration natively enforcing Tier 0 globals alongside your architecture.
+
+```bash
+npx @infandev/agent-kit init --vscode
+```
+
+### For Antigravity
+
+Initializes the `.agent` folder containing the pure source context for tools like Aider or RooCode.
 
 ```bash
 npx @infandev/agent-kit init --antigravity
 ```
-
-> **Direct Cache Complier**: When using IDE flags, the core `.agent/` factory engine stays inside the hidden `npx` cache. Your codebase remains perfectly clean and only receives the finalized native IDE formats.
 
 ---
 
@@ -51,18 +57,4 @@ Unlike default IDE setups that overwhelm the AI with rule vomit, `@infandev/agen
 
 ---
 
-## 🛠️ CLI Reference
-
-### Re-Compile & Update
-
-If we release updates to the Master AI Rules, simply run the compile command again in your project root to sync your IDE rules perfectly:
-
-```bash
-npx @infandev/agent-kit compile --cursor
-# or
-npx @infandev/agent-kit compile --windsurf
-```
-
----
-
-MIT © 2026 [Infantex AI](https://github.com/infantex)
+MIT © 2026 [Infantex Team](https://github.com/infantex-team)

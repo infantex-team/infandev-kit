@@ -25,7 +25,7 @@ if (!command || command === "--help" || command === "-h") {
     --cursor       Compile native rule files for Cursor (.mdc)
     --windsurf     Compile native rule files for Windsurf (AGENTS.md)
     --vscode       Compile native rule files for VS Code (.github/copilot-instructions.md)
-    --antigravity  Clone raw .agent source to .antigravity/ (For Aider/RooCode)
+    --antigravity  Clone raw .agent source to .agent/ (For Aider/RooCode)
   `);
   process.exit(0);
 }
@@ -319,13 +319,13 @@ if (command === "init") {
   const platformFlags = args.slice(1).join(" ");
 
   if (platformFlags && platformFlags.includes("--antigravity")) {
-    const rawTargetDir = path.join(process.cwd(), ".antigravity");
+    const rawTargetDir = path.join(process.cwd(), ".agent");
     if (fs.existsSync(rawTargetDir)) {
-      console.error("⚠️ Warning: .antigravity directory already exists.");
+      console.error("⚠️ Warning: .agent directory already exists.");
     } else {
       console.log("📦 Initializing pure Antigravity Kit source...");
       copyDirRecursive(AGENT_ROOT, rawTargetDir);
-      console.log("✅ Successfully cloned pure source to .antigravity.");
+      console.log("✅ Successfully cloned pure source to .agent.");
     }
   } else if (
     platformFlags &&

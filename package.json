@@ -1,6 +1,6 @@
 {
   "name": "@infandev/agent-kit",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Infandev Agent Kit: Universal AI Ruleset Compiler",
   "bin": {
     "agent-kit": "./bin/cli.js"
@@ -25,12 +25,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/infantex/agent-kit.git"
+    "url": "git+https://github.com/infantex-team/infandev-kit.git"
   },
   "bugs": {
-    "url": "https://github.com/infantex/agent-kit/issues"
+    "url": "https://github.com/infantex-team/infandev-kit/issues"
   },
-  "homepage": "https://github.com/infantex/agent-kit#readme",
+  "homepage": "https://github.com/infantex-team/infandev-kit#readme",
   "publishConfig": {
     "access": "public"
   },
