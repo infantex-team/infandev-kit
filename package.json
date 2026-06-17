@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
-    ".agent",
+    ".agents",
     "bin",
     "README.md"
   ],
@@ -21,7 +21,7 @@
     "antigravity",
     "tnbn"
   ],
-  "author": "daniel",
+  "author": "infandev",
   "license": "MIT",
   "repository": {
     "type": "git",

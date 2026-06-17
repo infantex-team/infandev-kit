@@ -1,5 +1,8 @@
 # ⚙️ @infandev/agent-kit
 
+[![npm version](https://img.shields.io/npm/v/@infandev/agent-kit.svg?style=flat-square)](https://www.npmjs.com/package/@infandev/agent-kit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+
 ## 🚀 Installation
 
 Install and compile the AI context engine directly into your workspace with a single command. **You must specify your IDE target.**
@@ -30,11 +33,25 @@ npx @infandev/agent-kit init --vscode
 
 ### For Antigravity
 
-Initializes the `.agent` folder containing the pure source context for tools like Aider or RooCode.
+Initializes the `.agents` folder containing the pure source context for tools like Aider or RooCode.
 
 ```bash
 npx @infandev/agent-kit init --antigravity
 ```
+
+---
+
+---
+
+## 🆚 Why Infandev Agent Kit? (Vanilla AI vs Enterprise AI)
+
+| Feature | Vanilla LLM / Default IDE | Infandev Kit (v2.0) |
+| :--- | :--- | :--- |
+| **Hallucination Risk** | High (Blind assumptions) | **Zero** (TNbN + Grounding Gates) |
+| **Context Window** | Overloaded (All rules always on) | **Efficient** (Progressive Disclosure) |
+| **Strategic Alignment** | Drifts easily | **Locked in** (Top-down Intent System) |
+| **Reasoning Depth** | Static (Tries to over-architect typos) | **Dynamic** (Scales based on Effort) |
+| **Confidence** | Confidently wrong | **Honest** (Explicit Uncertainty Protocol) |
 
 ---
 
@@ -59,6 +76,23 @@ This package forces the LLM to follow a strict Node-based operational pipeline, 
 
 ### 📦 Progressive Disclosure
 Unlike default IDE setups that overwhelm the AI with rule vomit, `@infandev/agent-kit` dynamically connects targeted Agent glob triggers to deep Skill modules (`@[.cursor/skills/...]`). As your AI reads a database schema, it actively pulls the `database-architect` context.
+
+---
+
+## 🛠️ Configuration Guide (v2.0 Features)
+
+### 1. Setting Your Project Intent
+After initializing the kit, define your project's non-negotiable trade-offs to align your entire AI workforce.
+
+1. Open `.agents/.shared/project-intent.md`
+2. Modify the **Primary Mandate** and **Trade-off Resolution** sections.
+3. Every specialized agent (Frontend, Backend, etc.) will automatically read and adhere to this strategy on every invocation.
+
+### 2. Effort Calibration
+The kit automatically maps your requests to the optimal reasoning depth.
+* **Low Effort**: (e.g. `Fix typo`) → Immediate execution. No planning overhead.
+* **Medium Effort**: (e.g. `Refactor component`) → Standard TNbN + Code Quoting.
+* **High Effort**: (e.g. `Build new feature`) → Full Grounding Gates, multi-pass verification.
 
 ---
 

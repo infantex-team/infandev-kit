@@ -2,6 +2,7 @@
 const { execSync } = require("child_process");
 const path = require("path");
 const fs = require("fs");
+const readline = require("readline");
 
 /**
  * Infandev Kit - CLI Wrapper & Native Compiler
@@ -18,20 +19,20 @@ if (!command || command === "--help" || command === "-h") {
   Usage: npx @infandev/agent-kit <command> [options]
 
   Commands:
-    init         🔥 Bootstrap the .agent kit (supports native flags!)
-    compile      ⚡ Sync .agent master rules to native IDE formats
+    init         🔥 Bootstrap the .agents kit (supports native flags!)
+    compile      ⚡ Sync .agents master rules to native IDE formats
 
   Options (for both init and compile):
     --cursor       Compile native rule files for Cursor (.mdc)
     --windsurf     Compile native rule files for Windsurf (AGENTS.md)
     --vscode       Compile native rule files for VS Code (.github/copilot-instructions.md)
-    --antigravity  Clone raw .agent source to .agent/ (For Aider/RooCode)
+    --antigravity  Clone raw .agents source to .agents/ (For Aider/RooCode)
   `);
   process.exit(0);
 }
 
 const PACKAGE_ROOT = path.join(__dirname, "..");
-const AGENT_ROOT = path.join(PACKAGE_ROOT, ".agent");
+const AGENT_ROOT = path.join(PACKAGE_ROOT, ".agents");
 
 // --- UTILS ---
 
@@ -150,8 +151,8 @@ globs: ${globStr}
     console.log(`✅ Cursor: Compiled ${file.replace('.md', '.mdc')}`);
   }
 
-  console.log("📦 Cursor: Copying skills, workflows, and infrastructure...");
-  const dirsToCopy = ["skills", "workflows", "rules", ".shared", "scripts"];
+  console.log("📦 Cursor: Copying skills, commands, and infrastructure...");
+  const dirsToCopy = ["skills", "rules", ".shared", "scripts"];
   for (const dir of dirsToCopy) {
     const src = path.join(agentRoot, dir);
     const dest = path.join(cursorDir, dir);
@@ -163,6 +164,14 @@ globs: ${globStr}
       }
     }
   }
+
+  const workflowsSrc = path.join(agentRoot, "workflows");
+  const commandsDest = path.join(cursorDir, "commands");
+  if (fs.existsSync(workflowsSrc)) {
+    copyDirRecursive(workflowsSrc, commandsDest);
+    console.log("✅ Cursor: Copied workflows to .cursor/commands");
+  }
+
   console.log("✅ Cursor: Master context directories cloned successfully.");
 }
 
@@ -319,13 +328,13 @@ if (command === "init") {
   const platformFlags = args.slice(1).join(" ");
 
   if (platformFlags && platformFlags.includes("--antigravity")) {
-    const rawTargetDir = path.join(process.cwd(), ".agent");
+    const rawTargetDir = path.join(process.cwd(), ".agents");
     if (fs.existsSync(rawTargetDir)) {
-      console.error("⚠️ Warning: .agent directory already exists.");
+      console.error("⚠️ Warning: .agents directory already exists.");
     } else {
       console.log("📦 Initializing pure Antigravity Kit source...");
       copyDirRecursive(AGENT_ROOT, rawTargetDir);
-      console.log("✅ Successfully cloned pure source to .agent.");
+      console.log("✅ Successfully cloned pure source to .agents.");
     }
   } else if (
     platformFlags &&
